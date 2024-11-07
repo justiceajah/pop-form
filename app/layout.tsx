@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primeicons/primeicons.css";
+import NavBar from "@/src/components/nav-items/NavBar";
+import Caption from "@/src/components/Caption";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +33,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main className="">
+          <div>
+            <Caption />
+            <NavBar className="block md:hidden"/>
+          </div>
+          <section className="grid grid-cols-1  md:grid-cols-12">
+            <div className="col-span-2 ">
+              <NavBar className="hidden md:block" />
+            </div>
+            <div className="md:col-start-3 md:col-end-13 mt-10">{children}</div>
+          </section>
+        </main>
       </body>
     </html>
   );
